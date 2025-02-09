@@ -62,9 +62,9 @@ begin
             alu_op      = 2'b00;
         end
         `OPCODE_STORE_WORD: begin
-            reg_dst     = 1'bx;
+            reg_dst     = 0;
             alu_src     = 1;
-            mem_to_reg  = 1'bx;
+            mem_to_reg  = 0;
             reg_write   = 0;
             mem_read    = 0;
             mem_write   = 1;
@@ -72,9 +72,9 @@ begin
             alu_op      = 2'b00;
         end
         `OPCODE_BRANCH_EQ: begin
-            reg_dst     = 1'bx;
+            reg_dst     = 0;
             alu_src     = 0;
-            mem_to_reg  = 1'bx;
+            mem_to_reg  = 0;
             reg_write   = 0;
             mem_read    = 0;
             mem_write   = 0;
