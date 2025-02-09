@@ -1,11 +1,11 @@
 //=========================================================================
 // Name & Email must be EXACTLY as in Gradescope roster!
-// Name: 
-// Email: 
+// Name: Michael Mihalovich
+// Email: mmiha004@ucr.edu
 // 
-// Assignment name: 
-// Lab section: 
-// TA: 
+// Assignment name: Lab 03 - Datapath Control Unit
+// Lab section: 021
+// TA: Nurlan Nazaraliyev
 // 
 // I hereby certify that I have not received assistance on this assignment,
 // or used code, from ANY outside source other than the instruction team
@@ -40,6 +40,68 @@ module control  (
 // ------------------------------ 
 always @(instr_op)
 begin 
-   // Put your solution here
+   case (instr_op)
+   begin
+    case (instr_op)
+        `OPCODE_R_TYPE: begin
+            reg_dst     = 1;
+            alu_src     = 0;
+            mem_to_reg  = 0;
+            reg_write   = 1;
+            mem_read    = 0;
+            mem_write   = 0;
+            branch      = 0;
+            alu_op      = 2'b10;
+        end
+        `OPCODE_LOAD_WORD: begin
+            reg_dst     = 0;
+            alu_src     = 1;
+            mem_to_reg  = 1;
+            reg_write   = 1;
+            mem_read    = 1;
+            mem_write   = 0;
+            branch      = 0;
+            alu_op      = 2'b00;
+        end
+        `OPCODE_STORE_WORD: begin
+            reg_dst     = 1'bx;
+            alu_src     = 1;
+            mem_to_reg  = 1'bx;
+            reg_write   = 0;
+            mem_read    = 0;
+            mem_write   = 1;
+            branch      = 0;
+            alu_op      = 2'b00;
+        end
+        `OPCODE_BRANCH_EQ: begin
+            reg_dst     = 1'bx;
+            alu_src     = 0;
+            mem_to_reg  = 1'bx;
+            reg_write   = 0;
+            mem_read    = 0;
+            mem_write   = 0;
+            branch      = 1;
+            alu_op      = 2'b01;
+        end
+        `OPCODE_ADDI: begin
+            reg_dst     = 0;
+            alu_src     = 1;
+            mem_to_reg  = 0;
+            reg_write   = 1;
+            mem_read    = 0;
+            mem_write   = 0;
+            branch      = 0;
+            alu_op      = 2'b00;
+        end
+        default: begin
+            reg_dst     = 1'bx;
+            alu_src     = 1'bx;
+            mem_to_reg  = 1'bx;
+            reg_write   = 1'bx;
+            mem_read    = 1'bx;
+            mem_write   = 1'bx;
+            branch      = 1'bx;
+            alu_op      = 2'bxx;
+        end
 end 
 endmodule
