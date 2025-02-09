@@ -162,15 +162,21 @@ module datapath_tb;
         $write("\tTest Case 5: R-type (SLT) ...");
         test_case(32'h0000002A, 32'hFFFFFFFF, 32'h0001, 1'b0, 32'h0001, 1'b1, 1'b0, 1'b0, 1'b0, 2'b10, 1'b0, 1'b0, 1'b1);
 
-        $write("\tTest Case 6: ADDI ...");
+        $write("\tTest Case 6: R-type (SLTU) ...");
+        test_case(32'h00000027, 32'hFFFFFFFF, 32'h0001, 1'b1, 32'h0000, 1'b1, 1'b0, 1'b0, 1'b0, 2'b10, 1'b0, 1'b0, 1'b1);
+
+        $write("\tTest Case 7: ADDI ...");
         test_case(32'h20000004, 32'hFFFFFFFB, 32'h0004, 1'b0, 32'hFFFFFFFF, 1'b0, 1'b0, 1'b0, 1'b0, 2'b00, 1'b0, 1'b1, 1'b1);
 
-        $write("\tTest Case 7: Load Word ...");
+        $write("\tTest Case 8: Load Word ...");
         test_case(32'h8C000020, 32'h000000FF, 32'h0020, 1'b0, 32'h011F, 1'b0, 1'b0, 1'b1, 1'b1, 2'b00, 1'b0, 1'b1, 1'b1);
 
-        $write("\tTest Case 8: Store Word ...");
+        $write("\tTest Case 9: Store Word ...");
         test_case(32'hAC000064, 32'h000000FF, 32'h0064, 1'b0, 32'h0163, 1'bx, 1'b0, 1'b0, 1'bx, 2'b00, 1'b1, 1'b1, 1'b0);
         
+        $write("\tTest Case 10: Branch (BEQ or BNE) ...");
+        test_case(32'h10000025, 32'h000000FF, 32'h0025, 1'b0, 32'h00DA, 1'bx, 1'b1, 1'b0, 1'bx, 2'b01, 1'b0, 1'b0, 1'b0);
+
         // --------------------------------------------------------------
         // End testing
         // --------------------------------------------------------------
