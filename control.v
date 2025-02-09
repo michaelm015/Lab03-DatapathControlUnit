@@ -40,8 +40,6 @@ module control  (
 // ------------------------------ 
 always @(instr_op)
 begin 
-   case (instr_op)
-   begin
     case (instr_op)
         `OPCODE_R_TYPE: begin
             reg_dst     = 1;
@@ -103,5 +101,6 @@ begin
             branch      = 1'bx;
             alu_op      = 2'bxx;
         end
+    endcase
 end 
 endmodule
